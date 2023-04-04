@@ -7,7 +7,8 @@ output_dir="data"
 
 mkdir -p $output_dir
 
-for i in {01..47}; do
+i=30
+# for i in {01..47}; do
   code=$(printf "%02d" $i)
   url=${url_template//\{code\}/$code}
   output_path="$output_dir/$code.zip"
@@ -18,6 +19,6 @@ for i in {01..47}; do
   ogr2ogr -f GeoJSON $output_dir/$code.geojson $output_dir/$code/r2ka$code.shp
   rm -rf $output_dir/$code
   rm $output_dir/$code.zip
-done
+# done
 
 echo "All prefecture boundaries downloaded."
