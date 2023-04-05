@@ -4,11 +4,7 @@
 https://geolonia.github.io/japanese-admins-kokuseichosa/<prefCode>/<adminCode>.json
 ```
 
-<!-- ## ビルド方法
-
-[「国土数値情報（行政区域データ）」（全国版）](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html)をダウンロードして、`data` ディレクトリに配置してください。
-
-以下のコマンドで、`docs` ディレクトリに JSON ファイルが生成されます。
+## ビルド方法
 
 ```
 $ npm install
@@ -17,8 +13,5 @@ $ npm run build
 
 ## 備考
 
-* [「国土数値情報（行政区域データ）」（国土交通省）](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html)を加工して作成
-* 政令指定都市は、区単位に分割してJSONファイルを作成しています。そのため JSON ファイルの数は、市区町村数（政令市、市、特別区、区、町、村） - 政令市数 となります。 -->
-
-
-<!-- 小地域（町丁・字等）（JGD2011）を使用 -->
+* [政府統計の総合窓口（e-Stat）境界データ 小地域町丁・字等）（JGD2011）](https://www.e-stat.go.jp/gis/statmap-search?page=1&type=2&aggregateUnitForBoundary=A&toukeiCode=00200521&toukeiYear=2020&serveyId=B002005212020&coordsys=1&format=shape&datum=2011)を加工して作成
+* 政令指定都市は、区単位に分割してJSONファイルを作成しています。そのため JSON ファイルの数は、市区町村数（政令市、市、特別区、区、町、村） - 政令市数 となります。
