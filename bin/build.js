@@ -39,7 +39,7 @@ rl.on('line', (line) => {
 
       data[prefCode][adminCode].features.push({
         type: 'Feature',
-        properties: { name: `${feature.properties['PREF_NAME']}${feature.properties['CITY_NAME'] || ''}${feature.properties['N03_004'] || ''}` },
+        properties: { name: `${feature.properties['PREF_NAME']}${feature.properties['CITY_NAME'] || ''}` },
         geometry: feature.geometry
       });
     } catch (e) {

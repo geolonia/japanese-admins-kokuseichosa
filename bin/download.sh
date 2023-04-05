@@ -10,6 +10,13 @@ mkdir -p $output_dir
 tail -n +2 $script_dir/admin-code.csv | while read line; do
   code=$(echo $line | cut -d, -f1)
   echo $code
+
+  # もし既にダウンロード済みならスキップ
+  if [ -f $output_dir/$code.geojson ]; then
+    echo "Already downloaded: $code"
+    continue
+  fi
+
   url=${url_template//\{code\}/$code}
   output_path="$output_dir/$code.zip"
   echo "Downloading: $code..."
