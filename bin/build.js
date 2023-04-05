@@ -8,6 +8,16 @@ const glob = require("glob")
 const files = glob.sync(`./data/*.geojson`);
 
 for (const file of files) {
+
+  const prefCode = path.basename(file).substr(0, 2);
+  const adminCode = path.basename(file).substr(0, 5);
+
+  // 既にファイルが存在する場合はスキップ
+  const targetFile = path.join(path.dirname(path.dirname(__filename)), 'docs', prefCode, `${adminCode}.json`);
+  if (fs.existsSync(targetFile)) {
+    continue;
+  }
+
   const readStream = fs.createReadStream(file);
   const rl = readline.createInterface({
     input: readStream,
@@ -26,8 +36,6 @@ for (const file of files) {
 
     features.forEach((feature) => {
       try {
-        const prefCode = feature.properties.PREF.substr(0, 2);
-        const adminCode = `${prefCode}${feature.properties.CITY}`;
 
         if (!data[prefCode]) {
           data[prefCode] = {};
