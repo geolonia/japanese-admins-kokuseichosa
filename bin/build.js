@@ -3,8 +3,9 @@
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
+const turf = require('@turf/turf');
 
-const file = path.join(path.dirname(path.dirname(__filename)), '/data/12.geojson');
+const file = path.join(path.dirname(path.dirname(__filename)), '/data/01101.geojson');
 const readStream = fs.createReadStream(file);
 const rl = readline.createInterface({
   input: readStream,
@@ -48,9 +49,10 @@ rl.on('line', (line) => {
   for (const pref in data) {
     const dir = path.join(path.dirname(path.dirname(__filename)), 'docs', pref);
     fs.mkdirSync(dir, { recursive: true });
-    console.log(data)
+
     for (const admin in data[pref]) {
       const file = path.join(path.dirname(path.dirname(__filename)), 'docs', pref, `${admin}.json`);
+
       const newjson = {
         type: "FeatureCollection",
         features: data[pref][admin].features
