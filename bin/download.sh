@@ -19,11 +19,15 @@ tail -n +2 $script_dir/admin-code.csv | while read line; do
 
   url=${url_template//\{code\}/$code}
   output_path="$output_dir/$code.zip"
+
   echo "Downloading: $code..."
   curl -o $output_path -L $url
   echo "Downloaded: $code"
   unzip -o $output_path -d $output_dir/$code
-  ogr2ogr -f GeoJSON $output_dir/$code.geojson $output_dir/$code/r2kb$code.shp
+
+  baseName=r2kb$code
+  ogr2ogr -f GeoJSON $output_dir/$code.geojson $output_dir/$code/$baseName.shp -dialect sqlite -sql "SELECT ST_Union(geometry), CITY_NAME FROM $baseName GROUP BY CITY_NAME"
+
   rm -rf $output_dir/$code
   rm $output_dir/$code.zip
 done
